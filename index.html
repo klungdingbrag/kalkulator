@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KALKULATOR BANGUNAN PRO - NUSANTARA GROUP</title>
+    <style>
+        /* Modern Reset & Premium Theme Base */
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: rgba(99, 102, 241, 0.08);
+            --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --sidebar-bg: #f8fafc;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg-gradient);
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Dashboard App Container Layout */
+        .calculator-app {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08), 
+                        0 4px 6px -4px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 1000px;
+            overflow: hidden;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Top Header Style */
+        .app-header {
+            padding: 30px 35px 25px 35px;
+            border-bottom: 1px solid var(--border-color);
+            background: #ffffff;
+        }
+
+        h1 {
+            color: var(--text-main);
+            margin: 0;
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+
+        /* Wrapper for Sidebar and Main Content */
+        .app-body {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        /* Sidebar Style (Left Side) */
+        .sidebar {
+            display: table-cell;
+            width: 300px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            padding: 35px 25px;
+            vertical-align: top;
+        }
+
+        .sidebar-title {
+            color: var(--text-muted);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-left: 5px;
+        }
+
+        /* Main Content Style (Right Side) */
+        .main-content {
+            display: table-cell;
+            padding: 35px;
+            vertical-align: top;
+            background: #ffffff;
+        }
+
+        /* Subtitle / Panel Title inside Content Area */
+        .panel-title {
+            color: var(--text-main);
+            font-size: 20px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        /* Navigation Menu Vertical */
+        .tabs-vertical {
+            display: block;
+        }
+
+        .tab-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 14px 16px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+
+        .tab-btn:hover {
+            background: rgba(99, 102, 241, 0.04);
+            color: var(--text-main);
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: var(--primary);
+            border-color: var(--border-color);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.05);
+        }
+
+        /* Content Panel Layout */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+            animation: fadeInPanel 0.3s ease-out;
+        }
+
+        /* Reusable Form Components */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .row {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: separate;
+            border-spacing: 16px 0;
+            margin-left: -16px;
+            margin-right: -16px;
+        }
+
+        .col {
+            display: table-cell;
+            vertical-align: top;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: block;
+        }
+
+        .prefix {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .suffix {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            color: var(--text-main);
+            font-weight: 600;
+            outline: none;
+            background-color: #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        input.has-prefix {
+            padding-left: 44px;
+        }
+
+        input.has-suffix {
+            padding-right: 44px;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+        }
+
+        button.btn-pro {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+
+        button.btn-pro:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Premium Results Layout - Fixed Spacing Issue */
+        .result-container {
+            background-color: #f8fafc;
+            border-radius: 16px;
+            padding: 10px 24px;
+            margin-top: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .result-row {
+            display: block;
+            padding: 16px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        /* Clean architecture via float/clear for high layout compatibility */
+        .result-row::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .result-label {
+            float: left;
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 24px;
+        }
+
+        .result-value {
+            float: right;
+            text-align: right;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Highlighted Box Row Styling */
+        .result-row.highlight {
+            background: linear-gradient(90deg, var(--primary-light) 0%, rgba(99, 102, 241, 0.01) 100%);
+            margin-left: -24px;
+            margin-right: -24px;
+            padding-left: 24px;
+            padding-right: 24px;
+            border-radius: 8px;
+        }
+
+        .highlight .result-label {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .highlight .result-value {
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        /* Brand Credit Footer Styling */
+        .brand-credit {
+            text-align: center;
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px dashed #e2e8f0;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .brand-credit span {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Responsive Layout Breakpoint */
+        @media (max-width: 768px) {
+            .app-body, .sidebar, .main-content {
+                display: block;
+                width: 100%;
+            }
+            .app-header {
+                text-align: center;
+                padding: 20px;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding: 25px 20px;
+            }
+            .main-content {
+                padding: 25px 20px;
+            }
+            .row {
+                display: block;
+                margin-left: 0;
+                margin-right: 0;
+            }
+            .col {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInPanel {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator-app">
+    <div class="app-header">
+        <h1>Kalkulator Bangunan Pro</h1>
+    </div>
+
+    <div class="app-body">
+        <div class="sidebar">
+            <div class="sidebar-title">Pilih Jenis Kalkulator</div>
+            <div class="tabs-vertical">
+                <button class="tab-btn active" onclick="switchTab('hebel-panel', this)">Hebel (Bata Ringan)</button>
+                <button class="tab-btn" onclick="switchTab('keramik-panel', this)">Keramik</button>
+                <button class="tab-btn" onclick="switchTab('pajak-panel', this)">DPP & PPN 12%</button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <div id="hebel-panel" class="tab-panel active">
+                <div class="panel-title">Kalkulator Kebutuhan Hebel (Bata Ringan)</div>
+                
+                <div class="form-group">
+                    <label for="ukuran">Pilih Ukuran Hebel</label>
+                    <select id="ukuran" onchange="hitungHebel()">
+                        <option value="83">Tebal 10 cm (60x20x10) - ±83 pcs/m³</option>
+                        <option value="112">Tebal 7.5 cm (60x20x7.5) - ±112 pcs/m³</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="panjang">Panjang Dinding</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="panjang" class="has-suffix" placeholder="Contoh: 15" min="0" step="any" oninput="hitungHebel()">
+                            <span class="suffix">m</span>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="tinggi">Tinggi Dinding</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="tinggi" class="has-suffix" placeholder="Contoh: 3" min="0" step="any" oninput="hitungHebel()">
+                            <span class="suffix">m</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="harga">Harga per Kubik (m³)</label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="number" id="harga" class="has-prefix" placeholder="Contoh: 550000" min="0" oninput="hitungHebel()">
+                    </div>
+                </div>
+
+                <button type="button" class="btn-pro" onclick="hitungHebel()">Hitung Kebutuhan</button>
+
+                <div class="result-container" id="hasilHebel" style="display: none;">
+                    <div class="result-row">
+                        <span class="result-label">Total Luas Dinding</span>
+                        <span class="result-value" id="resLuas">0 m²</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">Volume Kebutuhan</span>
+                        <span class="result-value" id="resKubik">0 m³</span>
+                    </div>
+                    <div class="result-row highlight">
+                        <span class="result-label">Kebutuhan Hebel</span>
+                        <span class="result-value" id="resPcs">0 pcs</span>
+                    </div>
+                    <div class="result-row" id="boxHargaPcs" style="display:none;">
+                        <span class="result-label">Estimasi Harga / Pcs</span>
+                        <span class="result-value" id="resHargaPcs">Rp 0</span>
+                    </div>
+                    <div class="result-row" id="boxBiaya" style="display:none;">
+                        <span class="result-label">Total Estimasi Biaya</span>
+                        <span class="result-value" id="resBiaya">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="keramik-panel" class="tab-panel">
+                <div class="panel-title">Kalkulator Kebutuhan Keramik</div>
+                
+                <div class="form-group">
+                    <label for="ukuranKeramik">Pilih Spesifikasi Ukuran Keramik</label>
+                    <select id="ukuranKeramik" onchange="hitungKeramik()">
+                        <option value="1.44">60 x 60 cm (Isi 4 pcs - Luas 1.44 m²)</option>
+                        <option value="1.00">50 x 50 cm (Isi 4 pcs - Luas 1.00 m²)</option>
+                        <option value="1.00">25 x 40 cm (Isi 10 pcs - Luas 1.00 m²)</option>
+                        <option value="1.00">25 x 25 cm (Isi 16 pcs - Luas 1.00 m²)</option>
+                        <option value="1.44">30 x 60 cm (Isi 8 pcs - Luas 1.44 m²)</option>
+                        <option value="0.96">40 x 40 cm (Isi 6 pcs - Luas 0.96 m²)</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col">
+                        <label for="panjangArea">Panjang Area</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="panjangArea" class="has-suffix" placeholder="0" min="0" step="any" oninput="hitungKeramik()">
+                            <span class="suffix">m</span>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="lebarArea">Lebar Area</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="lebarArea" class="has-suffix" placeholder="0" min="0" step="any" oninput="hitungKeramik()">
+                            <span class="suffix">m</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="hargaKeramik">Harga per Dus</label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="number" id="hargaKeramik" class="has-prefix" placeholder="Contoh: 65000" min="0" oninput="hitungKeramik()">
+                    </div>
+                </div>
+
+                <button type="button" class="btn-pro" onclick="hitungKeramik()">Hitung Keramik</button>
+
+                <div class="result-container" id="hasilKeramik" style="display: none;">
+                    <div class="result-row">
+                        <span class="result-label">Total Luas Area</span>
+                        <span class="result-value" id="resLuasKeramik">0 m²</span>
+                    </div>
+                    <div class="result-row highlight">
+                        <span class="result-label">Total Kebutuhan</span>
+                        <span class="result-value" id="resDusKeramik">0 Dus</span>
+                    </div>
+                    <div class="result-row" id="boxBiayaKeramik" style="display:none;">
+                        <span class="result-label">Total Biaya Keramik</span>
+                        <span class="result-value" id="resBiayaKeramik">Rp 0</span>
+                    </div>
+                </div>
+                
+                <div class="footer-note">
+                    * Perhitungan langsung membagi Luas Area dengan Luas Meter per Dus secara presisi.
+                </div>
+            </div>
+
+            <div id="pajak-panel" class="tab-panel">
+                <div class="panel-title">Kalkulator Pajak DPP & PPN 12%</div>
+                
+                <div class="form-group">
+                    <label for="hargaInclude">Harga Keluar / Gross (Include PPN 12%)</label>
+                    <div class="input-wrapper">
+                        <span class="prefix">Rp</span>
+                        <input type="text" id="hargaInclude" class="has-prefix" placeholder="0" oninput="formatAndCalculatePajak(this)">
+                    </div>
+                </div>
+
+                <div class="result-container">
+                    <div class="result-row">
+                        <span class="result-label">DPP (Dasar Pengenaan Pajak)</span>
+                        <span class="result-value" id="resDPP">Rp 0,00</span>
+                    </div>
+                    <div class="result-row">
+                        <span class="result-label">DPP Nilai Lain (80%)</span>
+                        <span class="result-value" id="resDPPNilaiLain">Rp 0,00</span>
+                    </div>
+                    <div class="result-row highlight">
+                        <span class="result-label">PPN Efektif 12%</span>
+                        <span class="result-value" id="resPPN">Rp 0,00</span>
+                    </div>
+                </div>
+                
+                <div class="footer-note">
+                    Formula dikonfigurasi menggunakan penyesuaian tarif PPN 12%
+                </div>
+            </div>
+
+            <div class="brand-credit">
+                &copy; <span id="currentYear"></span> Developed by <span>Nusantara Group</span>. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Set Tahun Otomatis untuk Credit
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Tab Switcher Controller
+    function switchTab(panelId, element) {
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        document.getElementById(panelId).classList.add('active');
+        element.classList.add('active');
+    }
+
+    // ==========================================
+    // LOGIKA KALKULATOR HEBEL
+    // ==========================================
+    function hitungHebel() {
+        const isiPerKubik = parseFloat(document.getElementById('ukuran').value);
+        const panjang = parseFloat(document.getElementById('panjang').value);
+        const tinggi = parseFloat(document.getElementById('tinggi').value);
+        const hargaPerKubik = parseFloat(document.getElementById('harga').value);
+        
+        if (isNaN(panjang) || panjang <= 0 || isNaN(tinggi) || tinggi <= 0) {
+            document.getElementById('hasilHebel').style.display = 'none';
+            return;
+        }
+
+        const luasDinding = panjang * tinggi;
+        const kebutuhanPcs = luasDinding / 0.12; 
+        const kebutuhanKubik = kebutuhanPcs / isiPerKubik;
+
+        document.getElementById('resLuas').innerText = luasDinding.toFixed(2) + ' m²';
+        document.getElementById('resPcs').innerText = Math.ceil(kebutuhanPcs).toLocaleString('id-ID') + ' pcs';
+        document.getElementById('resKubik').innerText = kebutuhanKubik.toFixed(3) + ' m³';
+
+        if (!isNaN(hargaPerKubik) && hargaPerKubik > 0) {
+            const hargaPerPcs = hargaPerKubik / isiPerKubik;
+            const totalBiaya = kebutuhanKubik * hargaPerKubik;
+            
+            document.getElementById('resHargaPcs').innerText = 'Rp ' + Math.ceil(hargaPerPcs).toLocaleString('id-ID');
+            document.getElementById('resBiaya').innerText = 'Rp ' + Math.ceil(totalBiaya).toLocaleString('id-ID');
+            
+            document.getElementById('boxHargaPcs').style.display = 'block';
+            document.getElementById('boxBiaya').style.display = 'block';
+        } else {
+            document.getElementById('boxHargaPcs').style.display = 'none';
+            document.getElementById('boxBiaya').style.display = 'none';
+        }
+
+        document.getElementById('hasilHebel').style.display = 'block';
+    }
+
+    // ==========================================
+    // LOGIKA KALKULATOR KERAMIK
+    // ==========================================
+    function hitungKeramik() {
+        const coveragePerDus = parseFloat(document.getElementById('ukuranKeramik').value);
+        const panjang = parseFloat(document.getElementById('panjangArea').value);
+        const lebar = parseFloat(document.getElementById('lebarArea').value);
+        const hargaPerDus = parseFloat(document.getElementById('hargaKeramik').value);
+
+        if (isNaN(panjang) || panjang <= 0 || isNaN(lebar) || lebar <= 0) {
+            document.getElementById('hasilKeramik').style.display = 'none';
+            return;
+        }
+
+        const totalLuas = panjang * lebar;
+        const butuhDus = Math.ceil(totalLuas / coveragePerDus);
+
+        document.getElementById('resLuasKeramik').innerText = totalLuas.toFixed(2) + ' m²';
+        document.getElementById('resDusKeramik').innerText = butuhDus.toLocaleString('id-ID') + ' Dus';
+
+        if (!isNaN(hargaPerDus) && hargaPerDus > 0) {
+            const totalBiayaKeramik = butuhDus * hargaPerDus;
+            document.getElementById('resBiayaKeramik').innerText = 'Rp ' + totalBiayaKeramik.toLocaleString('id-ID');
+            document.getElementById('boxBiayaKeramik').style.display = 'block';
+        } else {
+            document.getElementById('boxBiayaKeramik').style.display = 'none';
+        }
+
+        document.getElementById('hasilKeramik').style.display = 'block';
+    }
+
+    // ==========================================
+    // LOGIKA KALKULATOR DPP & PPN 12%
+    // ==========================================
+    function formatNumber(num) {
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function window_intlFormat(val) {
+        return new Intl.NumberFormat('id-ID', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(val);
+    }
+
+    function formatAndCalculatePajak(input) {
+        let rawValue = input.value.replace(/[^0-9]/g, '');
+        if (rawValue === '') rawValue = '0';
+        
+        let numericValue = parseFloat(rawValue);
+        input.value = rawValue === '0' ? '' : formatNumber(rawValue);
+        
+        let dpp = numericValue / 1.12;
+        let dppNilaiLain = dpp * (11 / 12);
+        let ppn = dppNilaiLain * 0.12;
+        
+        document.getElementById('resDPP').innerText = "Rp " + window_intlFormat(dpp);
+        document.getElementById('resDPPNilaiLain').innerText = "Rp " + window_intlFormat(dppNilaiLain);
+        document.getElementById('resPPN').innerText = "Rp " + window_intlFormat(ppn);
+    }
+</script>
+</body>
+</html>

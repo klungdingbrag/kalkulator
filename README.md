@@ -30,4 +30,4 @@ Click the **Fork** button at the top-right of this page to create a duplicate co
 ### 2. Clone Your Fork
 Open your terminal or Git Bash, and clone your personal fork using this command:
 ```bash
-git clone [https://github.com/klungdingbrag/calculator-pro.git](https://github.com/YOUR-USERNAME/calculator-pro.git)
+git clone [https://github.com/klungdingbrag/kalkulator.git](https://github.com/YOUR-USERNAME/kalkulator.git)

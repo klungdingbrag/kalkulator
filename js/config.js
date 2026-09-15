@@ -1,0 +1,1 @@
+const calculators=[{id:'dpp',name:'DPP & PPN 12%',icon:'receipt',page:'pages/dpp.html'},{id:'hebel',name:'Kalkulator Hebel',icon:'blocks',page:'pages/hebel.html'},{id:'keramik',name:'Kalkulator Keramik',icon:'grid-2x2',page:'pages/keramik.html'}];

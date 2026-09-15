@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Kalkulator DPP dan PPN 12% Nusantara Group.">
+<title>Kalkulator DPP & PPN 12%</title>
+<link rel="stylesheet" href="../css/style.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class'};</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
+<main class="min-h-screen px-3 py-6 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-5xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,.10)] dark:border-slate-800 dark:bg-slate-900">
+<header class="border-b border-slate-200 px-5 py-6 sm:px-8 dark:border-slate-800">
+<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+<div class="flex items-center gap-3"><div class="grid h-12 w-12 place-items-center rounded-2xl bg-indigo-600 text-white"><i data-lucide="receipt" class="h-6 w-6"></i></div><div><div class="flex items-center gap-2"><h1 class="text-lg font-extrabold sm:text-xl">Kalkulator DPP & PPN 12%</h1><span class="rounded-full bg-indigo-50 px-2 py-0.5 text-[10px] font-bold text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300">PRO</span></div><p class="text-xs text-slate-500 dark:text-slate-400">Hitung pajak dengan skema DPP Nilai Lain secara cepat.</p></div></div>
+<button id="themeBtn" onclick="toggleTheme()" class="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold hover:border-indigo-300 dark:border-slate-700 dark:bg-slate-800"><i id="themeIcon" data-lucide="moon" class="h-4 w-4"></i><span id="themeText">Mode Gelap</span></button>
+</div>
+</header>
+<section class="p-5 sm:p-8">
+<div class="mb-7"><div class="flex items-center gap-2"><i data-lucide="calculator" class="h-5 w-5 text-indigo-500"></i><h2 class="text-xl font-extrabold tracking-tight">Perhitungan Pajak</h2></div><p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Masukkan salah satu nilai. Hasil akan dihitung otomatis.</p></div>
+<div class="grid gap-5 md:grid-cols-2">
+<div class="rounded-2xl border border-indigo-100 bg-indigo-50/60 p-5 dark:border-indigo-900/60 dark:bg-indigo-950/20"><div class="mb-4 flex items-center gap-2 text-sm font-bold text-indigo-800 dark:text-indigo-300"><i data-lucide="badge-check" class="h-4 w-4"></i>Harga Include PPN</div><label for="hargaPajak" class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Total Harga</label><div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">Rp</span><input id="hargaPajak" type="text" inputmode="numeric" autocomplete="off" placeholder="10.000.000" class="input w-full pl-11 text-base" oninput="formatRupiah(this,'hitungDariHarga','dppPajak')"></div><p class="mt-2 text-[11px] text-slate-500 dark:text-slate-400">Contoh: ketik 10000000 → 10.000.000</p></div>
+<div class="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-5 dark:border-emerald-900/60 dark:bg-emerald-950/20"><div class="mb-4 flex items-center gap-2 text-sm font-bold text-emerald-800 dark:text-emerald-300"><i data-lucide="file-input" class="h-4 w-4"></i>DPP</div><label for="dppPajak" class="mb-2 block text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Dasar Pengenaan Pajak</label><div class="relative"><span class="absolute left-4 top-1/2 -translate-y-1/2 text-sm font-bold text-slate-400">Rp</span><input id="dppPajak" type="text" inputmode="numeric" autocomplete="off" placeholder="9.009.009" class="input w-full pl-11 text-base" oninput="formatRupiah(this,'hitungDariDpp','hargaPajak')"></div><p class="mt-2 text-[11px] text-slate-500 dark:text-slate-400">Contoh: ketik 9009009 → 9.009.009</p></div>
+</div>
+<div class="mt-6 rounded-2xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-950/40"><div class="mb-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-slate-400"><i data-lucide="bar-chart-3" class="h-4 w-4"></i>Rincian Perhitungan</div><div id="hasilPajak"></div></div>
+<div class="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-800/60"><div class="mb-2 text-xs font-bold uppercase tracking-wide text-slate-500 dark:text-slate-400">Rumus yang digunakan</div><div class="grid gap-1 text-xs leading-5 text-slate-500 dark:text-slate-400 sm:grid-cols-2"><p>DPP = Harga Include ÷ 1,11</p><p>Harga Include = DPP × 1,11</p><p>DPP Nilai Lain = DPP × 11 ÷ 12</p><p>PPN 12% = DPP Nilai Lain × 12%</p><p>PPN 11% = DPP × 11%</p></div></div>
+<div class="mt-5 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs leading-5 text-amber-800 dark:border-amber-900/60 dark:bg-amber-950/20 dark:text-amber-300"><i data-lucide="info" class="mt-0.5 h-4 w-4 shrink-0"></i><p>Masukkan <strong>Harga Include PPN</strong> atau <strong>DPP</strong>. Saat salah satu kolom diisi, kolom lainnya akan dikosongkan agar tidak terjadi konflik input.</p></div>
+<footer class="mt-8 border-t border-dashed border-slate-200 pt-5 text-center text-xs text-slate-400 dark:border-slate-800"><span class="font-semibold text-indigo-500">Nusantara Group</span> · Kalkulator DPP & PPN 12%</footer>
+</section>
+</div>
+</main>
+<script src="../js/app.js"></script><script src="../js/dpp.js"></script>
+<script>document.addEventListener('DOMContentLoaded',()=>{initTheme();lucide.createIcons();renderDpp(0);});</script>
+</body>
+</html>

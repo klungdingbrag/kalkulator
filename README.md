@@ -1,33 +1,36 @@
-# 🧮 Calculator Pro - Open Source Building & Construction Estimator
+# 🧮 Nusantara Calculator Pro
 
-Welcome to **Calculator Pro**! This is an open-source web-based calculation tool built with HTML, CSS, and JavaScript. 
+Web calculator modular untuk kebutuhan bangunan dan perhitungan DPP & PPN.
 
-This project aims to become a comprehensive, high-precision estimation tool for daily use and construction management. We highly encourage *open collaboration* and invite developers, engineers, and creators to freely modify, enhance, and expand this project.
+## Struktur
 
----
+```text
+kalkulator/
+├── index.html
+├── pages/
+│   ├── dpp.html
+│   ├── hebel.html
+│   └── keramik.html
+├── js/
+│   ├── app.js
+│   ├── config.js
+│   ├── dpp.js
+│   ├── hebel.js
+│   └── keramik.js
+├── css/
+│   └── style.css
+└── assets/
+```
 
-## 🎯 Project Vision: Building Material Expansion
+## Menambah kalkulator
 
-While the core starts with a standard advanced calculator, the primary milestone for **Calculator Pro** is to integrate specialized **Building Material & Construction Estimators**. 
+1. Buat halaman baru di `pages/`.
+2. Buat logika perhitungan di `js/`.
+3. Tambahkan satu entry di `js/config.js`.
+4. Gunakan `css/style.css` dan fungsi umum `js/app.js` agar tampilan konsisten.
 
-We want to help users calculate real-world construction needs easily. We are actively looking for contributors to build calculation modules for:
-*   **Roofing Needs** (Kebutuhan Atap & Genteng)
-*   **Sloat/Tie Beam Structural Materials** (Kebutuhan Sloof & Besi Tulangan)
-*   **Concrete Casting Volume** (Kebutuhan Pengecoran & Semen/Pasir/Kerikil)
-*   **Lightweight Steel Roof Truss** (Kebutuhan Baja Ringan & Reng)
-*   **Bricklaying & Wall Plastering** (Kebutuhan Bata, Plesteran, & Acian)
-*   *And any other construction-related calculation topics!*
+## Modul saat ini
 
----
-
-## 🚀 How to Contribute & Modify the Code
-
-Anyone is free to modify, add features, or customize this project. To maintain a clean workflow, please follow these practical steps:
-
-### 1. Fork the Repository
-Click the **Fork** button at the top-right of this page to create a duplicate copy of this repository under your own GitHub account.
-
-### 2. Clone Your Fork
-Open your terminal or Git Bash, and clone your personal fork using this command:
-```bash
-git clone [https://github.com/klungdingbrag/kalkulator.git](https://github.com/klungdingbrag/kalkulator.git)
+- DPP & PPN 12%
+- Kalkulator Hebel / Bata Ringan
+- Kalkulator Keramik

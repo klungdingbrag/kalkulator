@@ -1,0 +1,7 @@
+function rawDppNumber(id){const el=document.getElementById(id);if(!el)return 0;const digits=String(el.value||'').replace(/\D/g,'');const n=Number(digits);return Number.isFinite(n)?n:0}
+function moneyDpp(v){return new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',minimumFractionDigits:2,maximumFractionDigits:2}).format(Number.isFinite(v)?v:0)}
+function rowDpp(label,value,hi=false){return `<div class="flex items-center justify-between gap-4 border-b border-slate-200 py-3 last:border-0 dark:border-slate-800"><span class="text-sm text-slate-500 dark:text-slate-400">${label}</span><strong class="text-sm ${hi?'text-base text-indigo-600 dark:text-indigo-400':'text-slate-800 dark:text-slate-100'}">${value}</strong></div>`}
+function formatRupiah(input,fn,clearId){const digits=input.value.replace(/\D/g,'');input.value=digits?new Intl.NumberFormat('id-ID').format(Number(digits)):'';if(clearId&&digits){const other=document.getElementById(clearId);if(other)other.value=''}window[fn]();}
+function renderDpp(dpp){const harga=dpp*1.11;const dppNilaiLain=dpp*11/12;const ppn12=dppNilaiLain*0.12;const ppn11=dpp*0.11;document.getElementById('hasilPajak').innerHTML=rowDpp('HARGA INCLUDE PPN',moneyDpp(harga))+rowDpp('DPP',moneyDpp(dpp))+rowDpp('DPP NILAI LAIN',moneyDpp(dppNilaiLain))+rowDpp('PPN 12% DARI DPP NILAI LAIN',moneyDpp(ppn12))+rowDpp('PPN 11% DARI DPP',moneyDpp(ppn11),true)}
+function hitungDariHarga(){renderDpp(rawDppNumber('hargaPajak')/1.11)}
+function hitungDariDpp(){renderDpp(rawDppNumber('dppPajak'))}

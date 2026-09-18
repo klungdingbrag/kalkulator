@@ -1,1 +1,27 @@
-const calculators=[{id:'dpp',name:'DPP & PPN 12%',icon:'receipt',page:'pages/dpp.html'},{id:'hebel',name:'Kalkulator Hebel',icon:'blocks',page:'pages/hebel.html'},{id:'keramik',name:'Kalkulator Keramik',icon:'grid-2x2',page:'pages/keramik.html'}];
+const calculators=[
+{id:'dpp',name:'DPP & PPN 12%',icon:'receipt',page:'pages/dpp.html'},
+{id:'basic',name:'Kalkulator Biasa',icon:'calculator',page:'pages/kalkulator.html'},
+{id:'hebel',name:'Kalkulator Hebel',icon:'blocks',page:'pages/hebel.html'},
+{id:'keramik',name:'Kalkulator Keramik',icon:'grid-2x2',page:'pages/keramik.html'},
+{id:'hpp',name:'Kalkulator HPP',icon:'wallet',page:'pages/kalkulator-hpp.html'},
+{id:'harga-jual',name:'Kalkulator Harga Jual',icon:'tag',page:'pages/kalkulator-harga-jual.html'},
+{id:'margin',name:'Kalkulator Margin',icon:'percent',page:'pages/kalkulator-margin.html'},
+{id:'markup',name:'Kalkulator Markup',icon:'trending-up',page:'pages/kalkulator-markup.html'},
+{id:'diskon',name:'Kalkulator Diskon',icon:'badge-percent',page:'pages/kalkulator-diskon.html'},
+{id:'profit',name:'Kalkulator Profit',icon:'coins',page:'pages/kalkulator-profit.html'},
+{id:'bep',name:'Kalkulator BEP',icon:'scale',page:'pages/kalkulator-bep.html'},
+{id:'target-penjualan',name:'Target Penjualan',icon:'target',page:'pages/kalkulator-target-penjualan.html'},
+{id:'pajak',name:'Pajak / PPN',icon:'landmark',page:'pages/kalkulator-pajak.html'},
+{id:'persentase',name:'Persentase',icon:'percent',page:'pages/kalkulator-persentase.html'},
+{id:'volume',name:'Volume',icon:'box',page:'pages/kalkulator-volume.html'},
+{id:'luas',name:'Luas',icon:'square',page:'pages/kalkulator-luas.html'},
+{id:'berat',name:'Konversi Berat',icon:'weight',page:'pages/kalkulator-berat.html'},
+{id:'konversi',name:'Konversi Satuan',icon:'ruler',page:'pages/kalkulator-konversi.html'},
+{id:'cat',name:'Kebutuhan Cat',icon:'paintbrush',page:'pages/kalkulator-cat.html'},
+{id:'beton',name:'Volume Beton',icon:'construction',page:'pages/kalkulator-beton.html'},
+{id:'pipa',name:'Kebutuhan Pipa',icon:'cable',page:'pages/kalkulator-pipa.html'},
+{id:'besi-beton',name:'Besi Beton',icon:'grip',page:'pages/kalkulator-besi-beton.html'},
+{id:'plafon',name:'Kebutuhan Plafon',icon:'layers',page:'pages/kalkulator-plafon.html'},
+{id:'atap',name:'Kebutuhan Atap',icon:'home',page:'pages/kalkulator-atap.html'},
+{id:'rab',name:'RAB Sederhana',icon:'clipboard-list',page:'pages/kalkulator-rab.html'}
+];

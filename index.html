@@ -2,32 +2,58 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="Nusantara Group Calculator Hub untuk kebutuhan perhitungan bangunan dan pajak.">
+<meta name="description" content="Nusantara Calculator Pro — pusat kalkulator bisnis, bangunan, pajak, dan proyek.">
 <title>Nusantara Calculator Pro</title>
 <link rel="stylesheet" href="css/style.css">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>tailwind.config={darkMode:'class'};</script>
+<script src="https://cdn.tailwindcss.com"></script><script>tailwind.config={darkMode:'class'};</script>
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="min-h-screen bg-slate-100 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
-<div class="flex min-h-screen">
-<aside id="sidebar" class="fixed inset-y-0 left-0 z-50 flex w-72 -translate-x-full flex-col border-r border-slate-200 bg-white/95 p-4 shadow-xl transition-transform duration-300 glass dark:border-slate-800 dark:bg-slate-900/95 lg:static lg:translate-x-0 lg:shadow-none">
-<div class="mb-6 flex items-center justify-between px-2"><div class="flex items-center gap-3"><div class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-white"><i data-lucide="calculator"></i></div><div><div class="font-extrabold">Nusantara</div><div class="text-[10px] font-bold uppercase tracking-widest text-indigo-500">Calculator Pro</div></div></div><button onclick="toggleSidebar()" class="rounded-lg p-2 hover:bg-slate-100 dark:hover:bg-slate-800 lg:hidden"><i data-lucide="x" class="h-5 w-5"></i></button></div>
-<div class="mb-3 px-2 text-[10px] font-bold uppercase tracking-[.16em] text-slate-400">Menu Utama</div>
-<nav id="calculatorNav" class="space-y-1.5"></nav>
-<div class="mt-auto rounded-2xl border border-indigo-100 bg-indigo-50 p-4 dark:border-indigo-900/60 dark:bg-indigo-950/30"><div class="mb-1 flex items-center gap-2 text-xs font-bold text-indigo-700 dark:text-indigo-300"><i data-lucide="sparkles" class="h-4 w-4"></i>Nusantara Group</div><p class="text-xs leading-5 text-indigo-700/80 dark:text-indigo-300/80">Sistem kalkulator modular. Tambahkan modul baru melalui js/config.js.</p></div>
-</aside>
-<div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 z-40 hidden bg-slate-950/40 lg:hidden"></div>
-<div class="flex min-w-0 flex-1 flex-col">
-<header class="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-slate-200 bg-white/90 px-4 shadow-sm glass dark:border-slate-800 dark:bg-slate-900/90 sm:px-6"><div class="flex min-w-0 items-center gap-3"><button onclick="toggleSidebar()" class="rounded-xl border border-slate-200 p-2 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-800 lg:hidden"><i data-lucide="menu" class="h-5 w-5"></i></button><div><div id="pageTitle" class="truncate text-sm font-extrabold sm:text-base">DPP & PPN 12%</div><div class="hidden text-[11px] text-slate-400 sm:block">Nusantara Group · Calculator Hub</div></div></div><button onclick="toggleTheme()" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold dark:border-slate-700 dark:bg-slate-800"><i id="themeIcon" data-lucide="moon" class="h-4 w-4"></i><span id="themeText" class="hidden sm:inline">Mode Gelap</span></button></header>
-<main class="min-h-0 flex-1 bg-slate-100 p-3 dark:bg-slate-950 sm:p-5"><div class="h-[calc(100vh-6.5rem)] min-h-[650px] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900"><iframe id="mainFrame" src="pages/dpp.html" title="DPP & PPN 12%" class="h-full w-full"></iframe></div></main>
-</div></div>
+<div class="min-h-screen">
+<header class="sticky top-0 z-40 border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur dark:border-slate-800 dark:bg-slate-900/90">
+<div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
+<div class="flex items-center gap-3"><div class="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-white shadow-lg shadow-indigo-600/20"><i data-lucide="calculator" class="h-5 w-5"></i></div><div><div class="font-extrabold">Nusantara Calculator</div><div class="text-[10px] font-bold uppercase tracking-[.18em] text-indigo-500">Pro · Calculator Hub</div></div></div>
+<button onclick="toggleTheme()" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-semibold dark:border-slate-700 dark:bg-slate-800"><i id="themeIcon" data-lucide="moon" class="h-4 w-4"></i><span id="themeText" class="hidden sm:inline">Mode Gelap</span></button>
+</div></header>
+<main class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
+<section class="mb-7 overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-indigo-600 to-violet-700 p-6 text-white shadow-xl shadow-indigo-900/15 sm:p-8">
+<div class="max-w-3xl"><div class="mb-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-bold"><i data-lucide="sparkles" class="h-3.5 w-3.5"></i>25 kalkulator siap digunakan</div><h1 class="text-2xl font-black tracking-tight sm:text-4xl">Hitung lebih cepat. Kerja lebih rapi.</h1><p class="mt-2 max-w-2xl text-sm leading-6 text-indigo-100 sm:text-base">Kumpulan kalkulator praktis untuk bisnis, material bangunan, pajak, dan pekerjaan proyek.</p></div>
+<div class="mt-6 relative max-w-2xl"><i data-lucide="search" class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"></i><input id="searchInput" oninput="renderCards()" type="search" placeholder="Cari kalkulator, misalnya HPP, beton, margin..." class="w-full rounded-2xl border-0 bg-white px-12 py-4 text-sm font-semibold text-slate-900 shadow-lg outline-none ring-0 placeholder:text-slate-400 focus:ring-4 focus:ring-white/20"></div>
+</section>
+<div class="mb-5 flex flex-wrap gap-2" id="categoryFilters"></div>
+<section id="cards" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"></section>
+<div id="emptyState" class="hidden rounded-3xl border border-dashed border-slate-300 bg-white p-10 text-center dark:border-slate-700 dark:bg-slate-900"><i data-lucide="search-x" class="mx-auto h-10 w-10 text-slate-300"></i><h2 class="mt-3 font-bold">Kalkulator tidak ditemukan</h2><p class="mt-1 text-sm text-slate-500">Coba gunakan kata kunci yang lebih umum.</p></div>
+<section id="calculatorView" class="hidden">
+<div class="mb-4 flex items-center justify-between gap-3"><div><div class="text-xs font-bold uppercase tracking-wider text-indigo-500">Kalkulator aktif</div><h2 id="activeTitle" class="text-xl font-extrabold"></h2></div><button onclick="showDashboard()" class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-bold hover:border-indigo-300 dark:border-slate-700 dark:bg-slate-900"><i data-lucide="arrow-left" class="h-4 w-4"></i>Kembali</button></div>
+<div class="h-[calc(100vh-12rem)] min-h-[650px] overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900"><iframe id="mainFrame" title="Kalkulator" class="h-full w-full"></iframe></div>
+</section>
+</main>
+<footer class="border-t border-slate-200 py-6 text-center text-xs text-slate-400 dark:border-slate-800">Nusantara Group · Calculator Pro</footer>
+</div>
 <script src="js/app.js"></script><script src="js/config.js"></script>
 <script>
-function toggleSidebar(force){const s=document.getElementById('sidebar'),o=document.getElementById('overlay');const open=force===undefined?!s.classList.contains('translate-x-0'):force;s.classList.toggle('translate-x-0',open);s.classList.toggle('-translate-x-full',!open);o.classList.toggle('hidden',!open)}
-function loadCalculator(item,btn){document.getElementById('mainFrame').src=item.page;document.getElementById('mainFrame').title=item.name;document.getElementById('pageTitle').textContent=item.name;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('nav-active'));btn.classList.add('nav-active');localStorage.setItem('activeCalculator',item.id);if(window.innerWidth<1024)toggleSidebar(false)}
-function renderNav(){const nav=document.getElementById('calculatorNav');const active=localStorage.getItem('activeCalculator')||calculators[0].id;nav.innerHTML=calculators.map(item=>`<button class="nav-btn flex w-full items-center gap-3 rounded-xl border border-transparent px-3.5 py-3 text-left text-sm font-semibold text-slate-500 hover:bg-slate-50 dark:text-slate-400 dark:hover:bg-slate-800 ${item.id===active?'nav-active font-bold':''}" data-id="${item.id}"><i data-lucide="${item.icon}" class="h-4 w-4"></i>${item.name}</button>`).join('');nav.querySelectorAll('.nav-btn').forEach(btn=>btn.addEventListener('click',()=>{const item=calculators.find(x=>x.id===btn.dataset.id);if(item)loadCalculator(item,btn)}));const item=calculators.find(x=>x.id===active)||calculators[0];document.getElementById('mainFrame').src=item.page;document.getElementById('mainFrame').title=item.name;document.getElementById('pageTitle').textContent=item.name;lucide.createIcons()}
-renderNav();initTheme();lucide.createIcons();
+const categoryMeta={
+umum:{label:'Umum',icon:'calculator',desc:'Perhitungan dasar & satuan',cls:'blue',items:['basic','persentase','volume','luas','berat','konversi']},
+bisnis:{label:'Bisnis',icon:'briefcase-business',desc:'Harga, profit & analisis usaha',cls:'emerald',items:['hpp','harga-jual','margin','markup','diskon','profit','bep','target-penjualan']},
+pajak:{label:'Pajak',icon:'landmark',desc:'DPP, PPN & perpajakan',cls:'amber',items:['dpp','pajak']},
+bangunan:{label:'Bangunan',icon:'hard-hat',desc:'Material & kebutuhan konstruksi',cls:'orange',items:['hebel','keramik','cat','beton','pipa','besi-beton','plafon','atap']},
+proyek:{label:'Proyek',icon:'clipboard-list',desc:'Perhitungan RAB',cls:'violet',items:['rab']}
+};
+const color={
+blue:{chip:'border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-300',icon:'bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300',line:'bg-blue-500'},
+emerald:{chip:'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950/30 dark:text-emerald-300',icon:'bg-emerald-100 text-emerald-700 dark:bg-emerald-950 dark:text-emerald-300',line:'bg-emerald-500'},
+amber:{chip:'border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900 dark:bg-amber-950/30 dark:text-amber-300',icon:'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300',line:'bg-amber-500'},
+orange:{chip:'border-orange-200 bg-orange-50 text-orange-700 dark:border-orange-900 dark:bg-orange-950/30 dark:text-orange-300',icon:'bg-orange-100 text-orange-700 dark:bg-orange-950 dark:text-orange-300',line:'bg-orange-500'},
+violet:{chip:'border-violet-200 bg-violet-50 text-violet-700 dark:border-violet-900 dark:bg-violet-950/30 dark:text-violet-300',icon:'bg-violet-100 text-violet-700 dark:bg-violet-950 dark:text-violet-300',line:'bg-violet-500'}
+};
+let activeCategory='semua';
+function categoryFor(id){return Object.entries(categoryMeta).find(([k,v])=>v.items.includes(id))?.[0]||'umum'}
+function renderFilters(){const el=document.getElementById('categoryFilters');const base='<button onclick="setCategory(\'semua\')" class="rounded-full border px-4 py-2 text-xs font-bold transition '+(activeCategory==='semua'?'border-indigo-500 bg-indigo-600 text-white':'border-slate-200 bg-white text-slate-600 hover:border-indigo-300 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300')+'">Semua</button>';el.innerHTML=base+Object.entries(categoryMeta).map(([id,m])=>{const c=color[m.cls];return '<button onclick="setCategory(\''+id+'\')" class="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold transition '+c.chip+' '+(activeCategory===id?'ring-2 ring-current/20':'')+'"><i data-lucide="'+m.icon+'" class="h-3.5 w-3.5"></i>'+m.label+'</button>'}).join('');lucide.createIcons()}
+function setCategory(id){activeCategory=id;renderFilters();renderCards()}
+function renderCards(){const q=(document.getElementById('searchInput').value||'').toLowerCase().trim();const cards=document.getElementById('cards');const items=calculators.filter(x=>(activeCategory==='semua'||categoryFor(x.id)===activeCategory)&&(!q||(x.name+' '+categoryMeta[categoryFor(x.id)].label).toLowerCase().includes(q)));cards.innerHTML=items.map(item=>{const cat=categoryMeta[categoryFor(item.id)],c=color[cat.cls];return '<button onclick="openCalculator(\''+item.id+'\')" class="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 text-left shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"><div class="absolute inset-x-0 top-0 h-1 '+c.line+'"></div><div class="flex items-start justify-between gap-3"><div class="grid h-11 w-11 place-items-center rounded-xl '+c.icon+'"><i data-lucide="'+item.icon+'" class="h-5 w-5"></i></div><i data-lucide="arrow-up-right" class="h-4 w-4 text-slate-300 transition group-hover:text-slate-500"></i></div><div class="mt-4 font-extrabold">'+item.name+'</div><div class="mt-1 text-xs leading-5 text-slate-500 dark:text-slate-400">'+cat.desc+'</div></button>'}).join('');document.getElementById('emptyState').classList.toggle('hidden',items.length>0);lucide.createIcons()}
+function openCalculator(id){const item=calculators.find(x=>x.id===id);if(!item)return;document.getElementById('cards').classList.add('hidden');document.getElementById('categoryFilters').classList.add('hidden');document.getElementById('emptyState').classList.add('hidden');document.querySelector('section').classList.add('hidden');document.getElementById('calculatorView').classList.remove('hidden');document.getElementById('activeTitle').textContent=item.name;document.getElementById('mainFrame').src=item.page;localStorage.setItem('activeCalculator',id);lucide.createIcons();window.scrollTo({top:0,behavior:'smooth'})}
+function showDashboard(){document.getElementById('calculatorView').classList.add('hidden');document.getElementById('cards').classList.remove('hidden');document.getElementById('categoryFilters').classList.remove('hidden');document.querySelector('section').classList.remove('hidden');renderCards()}
+renderFilters();renderCards();initTheme();lucide.createIcons();
 </script>
 </body>
 </html>
